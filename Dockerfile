@@ -2,11 +2,14 @@ from choonghyun88/metatron
 
 RUN rm -rf /app/metatron/metatron-discovery/
 COPY . /app/metatron/metatron-discovery/
+
 RUN cp /app/resources/application.yaml /app/metatron/metatron-discovery/discovery-server/src/main/resources/
 WORKDIR /app/metatron/metatron-discovery/discovery-frontend/
 RUN npm install
+
 WORKDIR /app/metatron/metatron-discovery/
 RUN mvn clean package -U -Dmaven.test.skip=true
+
 WORKDIR /app
 RUN /app/start-all.sh
 
